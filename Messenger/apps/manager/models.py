@@ -1,5 +1,15 @@
 from django.db import models
 from ckeditor.fields import     RichTextField
+# class web(main):
+#     about_us = models.TextField("about_us")
+#     phone =
+#     email =
+#     address =
+#     class   Meta:
+#         verbose_name:
+#         verbose_name_plural =
+#     def __str__(self):
+#         return about_us
 
 # Create your models here.
 class main(models.Model):
@@ -17,7 +27,7 @@ class category(main):
     image = models.ImageField('Category image', upload_to='category/')
     class Meta:
         verbose_name = 'Category'
-        verbose_name_plural = 'Categorys'
+        verbose_name_plural = 'Categories'
     def __str__(self):
         return self.name
 
@@ -35,7 +45,7 @@ class author(main):
         verbose_name = 'Author'
         verbose_name_plural = 'Authors'
     def __str__(self):
-        return '{0}{1}'.format(self.first_name,self.last_name)
+        return '{0}{1}{2}'.format(self.first_name," ",self.last_name)
 
 class post(main):
     title = models.CharField('Title', max_length=100, unique=True)
@@ -51,5 +61,46 @@ class post(main):
         verbose_name = 'Post'
         verbose_name_plural = 'Posts'
     def __str__(self):
-        return self.title   
+        return self.title
+
+class web(main):
+    about_us = models.TextField("about_us")
+    phone = models.CharField("Phone", max_length=20)
+    email = models.CharField("E-mail", max_length=150)
+    address = models.CharField("Address", max_length=200)
+    class   Meta:
+        verbose_name = 'Web'
+        verbose_name_plural ='Webs'
+    def __str__(self):
+        return self.about_us
+
+class social(main):
+    facebook = models.URLField("Facebook")
+    twitter = models.URLField("Twitter")
+    instagram = models.URLField("Instagram")
+    class   Meta:
+        verbose_name = 'Social network'
+        verbose_name_plural = 'Socials networks' 
+    def __str__(self):
+     return self.facebook
+
+class contact(main):
+    first_name = models.CharField('First_name', max_length=100)
+    last_name = models.CharField('Last_name', max_length=100)
+    email = models.EmailField('E-mail', max_length=150)
+    subject = models.CharField('Subject', max_length=100)
+    messaje = models.TextField('Messaje')
+    class Meta:
+        verbose_name = 'Contact'
+        verbose_name_plural = 'Contacts'
+    def __str__(self):
+        return self.subject
+
+class suscriber(main):    
+    email = models.EmailField('E-mail', max_length=150)    
+    class Meta:
+        verbose_name = 'Suscriber'
+        verbose_name_plural = 'Suscribers'
+    def __str__(self):
+        return self.email
 
